@@ -28,5 +28,5 @@ export default function Counter({ target }: { target: number }) {
     return () => observer.disconnect();
   }, [target]);
 
-  return <h2 ref={ref} className="sp-h2" style={{ fontSize: 60, color: "#fff", fontWeight: 600, fontFamily: "'Jost', sans-serif" }}>{count}</h2>;
+  return <h2 ref={ref} style={{ fontSize: 60, color: "#fff", fontWeight: 600, fontFamily: "'Jost', sans-serif", marginBottom: 10, lineHeight: 1 }}>{count}</h2>;
 }

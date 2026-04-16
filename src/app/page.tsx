@@ -261,21 +261,19 @@ export default function Home() {
                   <form onSubmit={(e) => e.preventDefault()}>
                     <Row>
                       <Col width="50%">
-                        <input type="text" className="form-control" placeholder="Name" required />
+                        <input type="text" placeholder="Name" required />
                       </Col>
                       <Col width="50%">
-                        <input type="email" className="form-control" placeholder="Email" required />
+                        <input type="email" placeholder="Email" required />
                       </Col>
                       <Col width="100%">
-                        <input type="text" className="form-control" placeholder="Subject" required />
+                        <input type="text" placeholder="Subject" required />
                       </Col>
                       <Col width="100%">
-                        <textarea rows={6} className="form-control" placeholder="Your Message" required style={{ height: "auto" }} />
+                        <textarea rows={6} placeholder="Your Message" required />
                       </Col>
                       <Col width="100%">
-                        <div style={{ textAlign: "center", marginTop: 10 }}>
-                          <button type="submit" className="contact_btn">Send Message</button>
-                        </div>
+                        <button type="submit" className="contact_btn">Send Message</button>
                       </Col>
                     </Row>
                   </form>
