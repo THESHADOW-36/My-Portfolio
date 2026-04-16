@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Jost:wght@300;400;500;600;700;800&family=Dancing+Script:wght@700&display=swap');
-@import "tailwindcss";
+@import "tailwindcss" layer(tailwind);
+
+/* Undo Tailwind preflight ::before/::after content reset for icon fonts */
+*::before, *::after {
+  --tw-content: unset;
+}
 
 
 /* ========== FONT FACE - Themify Icons ========== */
@@ -14,10 +19,10 @@
   font-style: normal;
 }
 [class^="ti-"], [class*=" ti-"] {
-  font-family: 'themify' !important;
+  font-family: 'themify';
   speak: none;
-  font-style: normal !important;
-  font-weight: normal !important;
+  font-style: normal;
+  font-weight: normal;
   font-variant: normal;
   text-transform: none;
   line-height: 1;
@@ -25,19 +30,19 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-.ti-cup::before { --tw-content: "\e036"; content: "\e036" !important; }
-.ti-medall-alt::before { --tw-content: "\e032"; content: "\e032" !important; }
-.ti-image::before { --tw-content: "\e01b"; content: "\e01b" !important; }
-.ti-crown::before { --tw-content: "\e037"; content: "\e037" !important; }
-.ti-key::before { --tw-content: "\e049"; content: "\e049" !important; }
-.ti-hand-open::before { --tw-content: "\e03c"; content: "\e03c" !important; }
-.ti-pencil-alt::before { --tw-content: "\e0a4"; content: "\e0a4" !important; }
-.ti-desktop::before { --tw-content: "\e023"; content: "\e023" !important; }
-.ti-server::before { --tw-content: "\e01c"; content: "\e01c" !important; }
-.ti-harddrives::before { --tw-content: "\e00d"; content: "\e00d" !important; }
-.ti-location-pin::before { --tw-content: "\e096"; content: "\e096" !important; }
-.ti-mobile::before { --tw-content: "\e024"; content: "\e024" !important; }
-.ti-email::before { --tw-content: "\e075"; content: "\e075" !important; }
+.ti-cup::before { content: "\e036"; }
+.ti-medall-alt::before { content: "\e032"; }
+.ti-image::before { content: "\e01b"; }
+.ti-crown::before { content: "\e037"; }
+.ti-key::before { content: "\e049"; }
+.ti-hand-open::before { content: "\e03c"; }
+.ti-pencil-alt::before { content: "\e0a4"; }
+.ti-desktop::before { content: "\e023"; }
+.ti-server::before { content: "\e01c"; }
+.ti-harddrives::before { content: "\e00d"; }
+.ti-location-pin::before { content: "\e096"; }
+.ti-mobile::before { content: "\e024"; }
+.ti-email::before { content: "\e075"; }
 
 /* ========== BASE ========== */
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -163,8 +168,9 @@ section[id] { scroll-margin-top: 70px; }
 @media (max-width: 480px) { .about_me_content h1 { font-size: 30px; } }
 .about_me_content > span { text-transform: capitalize; font-weight: 500; }
 .typewrite .wrap { border-right: 0.01em solid #fff; }
-.basic-info { margin-top: 30px; position: relative; display: flex; flex-wrap: wrap; }
-.single-basic-info { font-size: 14px; padding: 10px 0; width: 25%; min-width: 175px; padding-right: 15px; }
+.basic-info { margin-top: 30px; position: relative; display: flex; flex-wrap: wrap; gap: 0; }
+.single-basic-info { font-size: 14px; padding: 10px 0; width: 200px; padding-right: 20px; box-sizing: border-box; }
+.single-basic-info:first-child { width: 230px; }
 .single-basic-info p { font-size: 14px; }
 .single-basic-info p span { color: #fff; font-size: 16px; }
 
@@ -250,9 +256,10 @@ section[id] { scroll-margin-top: 70px; }
 .box:hover .icon { opacity: 1; transform: translateX(0); transition-delay: 0.3s; }
 .box .icon li { margin: 0 2px; display: inline-block; }
 .box .icon li a {
-  color: #fff; background: none; font-size: 16px; text-align: center;
-  line-height: 36px; height: 40px; width: 40px; border: 2px solid #fff;
-  display: block; transition: all 0.3s ease; border-radius: 30px;
+  color: #fff; background: none; font-size: 16px;
+  height: 40px; width: 40px; border: 2px solid #fff;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.3s ease; border-radius: 30px;
 }
 .box .icon li a:hover { color: #fff; background: #f0bb62; border-color: #f0bb62; }
 

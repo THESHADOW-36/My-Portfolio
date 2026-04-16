@@ -107,15 +107,13 @@ export default function Home() {
               { icon: "ti-crown", title: "Database Design", desc: "Efficient database architecture with MySQL and MongoDB, including schema design, optimization, and data management.", border: "" },
               { icon: "ti-key", title: "Real-Time Applications", desc: "Building real-time features with WebSockets, Pusher, and Laravel Reverb for live chat, notifications, and collaborative tools.", border: "sblr" },
               { icon: "ti-hand-open", title: "Payment Integration", desc: "Secure payment gateway integration including Razorpay, with transaction management and order processing systems.", border: "" },
-            ].map((s, i) => (
+            ].map((s) => (
               <Col width="33.333%" key={s.title} className="service-col no-padding">
-                <AnimateOnScroll delay={i * 0.1}>
-                  <div className={`serviceBox ${s.border}`}>
-                    <div className="service-icon"><span className={s.icon} /></div>
-                    <h3 className="title">{s.title}</h3>
-                    <p className="description">{s.desc}</p>
-                  </div>
-                </AnimateOnScroll>
+                <div className={`serviceBox ${s.border}`}>
+                  <div className="service-icon"><span className={s.icon} /></div>
+                  <h3 className="title">{s.title}</h3>
+                  <p className="description">{s.desc}</p>
+                </div>
               </Col>
             ))}
           </Row>
@@ -232,15 +230,13 @@ export default function Home() {
               { icon: "ti-desktop", title: "Frontend", desc: "React.js, Vue.js, Bootstrap, Material UI, Vuetify", border: "sbbr sbbrnone" },
               { icon: "ti-server", title: "Backend", desc: "Node.js, Express.js, Laravel", border: "sblr" },
               { icon: "ti-harddrives", title: "Database", desc: "MongoDB, MySQL", border: "" },
-            ].map((s, i) => (
+            ].map((s) => (
               <Col width="25%" key={s.title} className="skill-col no-padding">
-                <AnimateOnScroll delay={i * 0.1}>
-                  <div className={`serviceBox ${s.border}`}>
-                    <div className="service-icon"><span className={s.icon} /></div>
-                    <h3 className="title">{s.title}</h3>
-                    <p className="description">{s.desc}</p>
-                  </div>
-                </AnimateOnScroll>
+                <div className={`serviceBox ${s.border}`}>
+                  <div className="service-icon"><span className={s.icon} /></div>
+                  <h3 className="title">{s.title}</h3>
+                  <p className="description">{s.desc}</p>
+                </div>
               </Col>
             ))}
           </Row>
