@@ -1,5 +1,6 @@
 "use client";
 import Preloader from "@/components/Preloader";
+import { CupIcon, MedalIcon, ImageIcon, CrownIcon, KeyIcon, HandIcon, CodeIcon, DesktopIcon, ServerIcon, DatabaseIcon, LocationIcon, PhoneIcon, EmailIcon, LinkedInIcon } from "@/components/Icons";
 import Navbar from "@/components/Navbar";
 import ParticlesBg from "@/components/Particles";
 import TypeWriter from "@/components/TypeWriter";
@@ -11,7 +12,7 @@ import ScrollTop from "@/components/ScrollTop";
 import Image from "next/image";
 
 const Container = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => (
-  <div style={{ maxWidth: 1140, margin: "0 auto", padding: "0 15px" }} className={className}>{children}</div>
+  <div style={{ maxWidth: 1320, margin: "0 auto", padding: "0 30px" }} className={className}>{children}</div>
 );
 
 const Row = ({ children, className = "", style }: { children: React.ReactNode; className?: string; style?: React.CSSProperties }) => (
@@ -99,24 +100,22 @@ export default function Home() {
             <h1>What I&apos;m Doing</h1>
             <p>Services I offer to bring your ideas to life</p>
           </div>
-          <Row style={{ textAlign: "center" as const }}>
+          <div className="service-grid">
             {[
-              { icon: "ti-cup", title: "Full Stack Development", desc: "End-to-end web application development using Laravel, Vue.js, React.js, Node.js with robust backend APIs and dynamic frontends.", border: "sbbr" },
-              { icon: "ti-medall-alt", title: "Responsive Web Design", desc: "Pixel-perfect, mobile-first responsive designs using Bootstrap, Material UI, and Vuetify for seamless experiences across all devices.", border: "sbbr" },
-              { icon: "ti-image", title: "API Development", desc: "RESTful API design and development with Laravel and Express.js, including authentication, real-time features, and payment integration.", border: "sbbr sbbrnone" },
-              { icon: "ti-crown", title: "Database Design", desc: "Efficient database architecture with MySQL and MongoDB, including schema design, optimization, and data management.", border: "" },
-              { icon: "ti-key", title: "Real-Time Applications", desc: "Building real-time features with WebSockets, Pusher, and Laravel Reverb for live chat, notifications, and collaborative tools.", border: "sblr" },
-              { icon: "ti-hand-open", title: "Payment Integration", desc: "Secure payment gateway integration including Razorpay, with transaction management and order processing systems.", border: "" },
+              { Icon: CupIcon, title: "Full Stack Development", desc: "End-to-end web application development using Laravel, Vue.js, React.js, Node.js with robust backend APIs and dynamic frontends.", border: "sbbr" },
+              { Icon: MedalIcon, title: "Responsive Web Design", desc: "Pixel-perfect, mobile-first responsive designs using Bootstrap, Material UI, and Vuetify for seamless experiences across all devices.", border: "sbbr" },
+              { Icon: ImageIcon, title: "API Development", desc: "RESTful API design and development with Laravel and Express.js, including authentication, real-time features, and payment integration.", border: "sbbr sbbrnone" },
+              { Icon: CrownIcon, title: "Database Design", desc: "Efficient database architecture with MySQL and MongoDB, including schema design, optimization, and data management.", border: "" },
+              { Icon: KeyIcon, title: "Real-Time Applications", desc: "Building real-time features with WebSockets, Pusher, and Laravel Reverb for live chat, notifications, and collaborative tools.", border: "sblr" },
+              { Icon: HandIcon, title: "Payment Integration", desc: "Secure payment gateway integration including Razorpay, with transaction management and order processing systems.", border: "" },
             ].map((s) => (
-              <Col width="33.333%" key={s.title} className="service-col no-padding">
-                <div className={`serviceBox ${s.border}`}>
-                  <div className="service-icon"><span className={s.icon} /></div>
-                  <h3 className="title">{s.title}</h3>
-                  <p className="description">{s.desc}</p>
-                </div>
-              </Col>
+              <div key={s.title} className={`serviceBox ${s.border}`}>
+                <div className="service-icon"><s.Icon /></div>
+                <h3 className="title">{s.title}</h3>
+                <p className="description">{s.desc}</p>
+              </div>
             ))}
-          </Row>
+          </div>
         </Container>
       </section>
 
@@ -224,22 +223,20 @@ export default function Home() {
             <h1>Technical Skills</h1>
             <p>Technologies and tools I work with</p>
           </div>
-          <Row style={{ textAlign: "center" as const }}>
+          <div className="skill-grid">
             {[
-              { icon: "ti-pencil-alt", title: "Programming", desc: "HTML5, CSS3, JavaScript, TypeScript, PHP", border: "sbbr" },
-              { icon: "ti-desktop", title: "Frontend", desc: "React.js, Vue.js, Bootstrap, Material UI, Vuetify", border: "sbbr sbbrnone" },
-              { icon: "ti-server", title: "Backend", desc: "Node.js, Express.js, Laravel", border: "sblr" },
-              { icon: "ti-harddrives", title: "Database", desc: "MongoDB, MySQL", border: "" },
+              { Icon: CodeIcon, title: "Programming", desc: "HTML5, CSS3, JavaScript, TypeScript, PHP", border: "sbbr" },
+              { Icon: DesktopIcon, title: "Frontend", desc: "React.js, Vue.js, Bootstrap, Material UI, Vuetify", border: "sbbr sbbrnone" },
+              { Icon: ServerIcon, title: "Backend", desc: "Node.js, Express.js, Laravel", border: "sblr" },
+              { Icon: DatabaseIcon, title: "Database", desc: "MongoDB, MySQL", border: "" },
             ].map((s) => (
-              <Col width="25%" key={s.title} className="skill-col no-padding">
-                <div className={`serviceBox ${s.border}`}>
-                  <div className="service-icon"><span className={s.icon} /></div>
-                  <h3 className="title">{s.title}</h3>
-                  <p className="description">{s.desc}</p>
-                </div>
-              </Col>
+              <div key={s.title} className={`serviceBox ${s.border}`}>
+                <div className="service-icon"><s.Icon /></div>
+                <h3 className="title">{s.title}</h3>
+                <p className="description">{s.desc}</p>
+              </div>
             ))}
-          </Row>
+          </div>
         </Container>
       </section>
 
@@ -280,22 +277,22 @@ export default function Home() {
               <AnimateOnScroll delay={0.3}>
                 <div className="address_bg">
                   <div className="single_address">
-                    <div className="address_br"><span className="ti-location-pin" /></div>
+                    <div className="address_br"><LocationIcon /></div>
                     <h4>Address</h4>
                     <p>402, Shree Sai Shrdha Soc.,<br />Dharamveer Nagar, Vasant Vihar,<br />Thane(W) 400607</p>
                   </div>
                   <div className="single_address">
-                    <div className="address_br"><span className="ti-mobile" /></div>
+                    <div className="address_br"><PhoneIcon /></div>
                     <h4>Phone</h4>
                     <p>+91 9324834193</p>
                   </div>
                   <div className="single_address">
-                    <div className="address_br"><span className="ti-email" /></div>
+                    <div className="address_br"><EmailIcon /></div>
                     <h4>Email</h4>
                     <p>dineshthiru36@gmail.com</p>
                   </div>
                   <div className="single_address">
-                    <div className="address_br"><span className="ti-location-pin" /></div>
+                    <div className="address_br"><LinkedInIcon /></div>
                     <h4>LinkedIn</h4>
                     <p><a href="https://www.linkedin.com/in/dinesh-thirunavukkarasu2002" target="_blank" rel="noopener noreferrer" style={{ color: "#f0bb62" }}>Connect with me</a></p>
                   </div>

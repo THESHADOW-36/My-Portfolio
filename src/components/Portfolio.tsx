@@ -28,7 +28,7 @@ export default function Portfolio() {
 
   return (
     <section id="portfolio" className="portfolio_area section-padding">
-      <div style={{ maxWidth: 1140, margin: "0 auto", padding: "0 15px" }}>
+      <div style={{ maxWidth: 1320, margin: "0 auto", padding: "0 30px" }}>
         <div className="section-title" style={{ textAlign: "center" }}>
           <h1>My Projects</h1>
           <p>A showcase of applications I&apos;ve built across various domains</p>

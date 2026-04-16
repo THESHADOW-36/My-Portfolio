@@ -39,7 +39,7 @@ export default function Navbar() {
 
   return (
     <nav className={`navbar-custom ${sticky ? "nav-sticky" : ""}`}>
-      <div style={{ maxWidth: 1140, margin: "0 auto", padding: "0 15px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+      <div style={{ maxWidth: 1320, margin: "0 auto", padding: "0 30px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
         <a className="navbar-brand" href="#home" onClick={(e) => { e.preventDefault(); scrollTo("#home"); }}>
           Dinesh
         </a>
