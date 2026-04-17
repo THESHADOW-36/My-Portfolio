@@ -30,7 +30,7 @@ export default function Home() {
       <Navbar />
 
       {/* HOME */}
-      <section id="home" className="home_bg" style={{ backgroundImage: "url('/images/background-2.jpeg')" }}>
+      <section id="home" className="home_bg" style={{ backgroundImage: "url('/images/background-2.jpg')" }}>
         <ParticlesBg />
         <Container>
           <Row>
