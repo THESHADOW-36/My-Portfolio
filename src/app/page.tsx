@@ -30,7 +30,7 @@ export default function Home() {
       <Navbar />
 
       {/* HOME */}
-      <section id="home" className="home_bg" style={{ backgroundImage: "url('/images/bg.jpg')" }}>
+      <section id="home" className="home_bg" style={{ backgroundImage: "url('/images/background-2.jpeg')" }}>
         <ParticlesBg />
         <Container>
           <Row>
@@ -69,7 +69,7 @@ export default function Home() {
             <Col width="50%" className="about-col-left">
               <AnimateOnScroll delay={0.1}>
                 <div className="about_img">
-                  <Image src="/images/profile-pic.png" alt="Dinesh Thirunavukkarasu" width={500} height={500} style={{ width: "100%", height: "auto" }} />
+                  <Image src="/images/profile-2.jpeg" alt="Dinesh Thirunavukkarasu" width={500} height={500} style={{ width: "100%", height: "auto" }} />
                 </div>
               </AnimateOnScroll>
             </Col>
