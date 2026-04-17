@@ -48,7 +48,7 @@ export default function Portfolio() {
             <div key={p.title} style={{ width: "33.333%", padding: "0 15px", minWidth: 280 }} className="portfolio-col">
               <AnimateOnScroll delay={i * 0.1}>
                 <div className="box">
-                  <Image src={p.img} alt={p.title} width={400} height={300} style={{ width: "100%", height: "auto" }} />
+                  <Image src={p.img} alt={p.title} width={400} height={300} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
                   <div className="box-content">
                     <h3 className="title">{p.title}</h3>
                     <span className="post">{p.tech}</span>
