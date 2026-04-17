@@ -202,7 +202,7 @@ export default function Home() {
                 <div className="single_timeline">
                   <h4>Full Stack Developer</h4>
                   <span className="active_year">2024 - Present</span>
-                  <span className="active_company"> - Freelance / Contract</span>
+                  <span className="active_company"> - AAIBUZZ Pvt. Ltd.</span>
                   <p>Building full-stack applications with Laravel + Vue.js across healthcare, fintech, agriculture, and real estate domains. Delivered 6+ production-ready projects with real-time features and payment integration.</p>
                 </div>
                 <div className="single_timeline">
