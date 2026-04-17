@@ -4,22 +4,19 @@ import Image from "next/image";
 import AnimateOnScroll from "./AnimateOnScroll";
 
 const projects = [
-  { title: "Healthy Tantra", tech: "Laravel 10, Vue 2, Pusher, MySQL", img: "/images/1.jpg", category: "laravel" },
-  { title: "Dr Today", tech: "Laravel 10, Vue 3, TypeScript, Vite", img: "/images/2.jpg", category: "laravel" },
+  { title: "Healthy Tantra", tech: "Laravel 10, Vue 2, Pusher, MySQL", img: "/images/healthy-tantra-thumbnail.png", category: "laravel" },
+  { title: "Dr Today", tech: "Laravel 10, Vue 3, TypeScript, Vite", img: "/images/doctor-today-thumbnail.jpeg", category: "laravel" },
   { title: "MB Test", tech: "Laravel 10, Vue 2, Pusher, Laravel Echo", img: "/images/3.jpg", category: "laravel" },
-  { title: "Hommigo", tech: "Laravel 10, Vue 3, Razorpay, WebSocket", img: "/images/4.jpg", category: "laravel" },
-  { title: "BusinessPe", tech: "Laravel 10, Vue 2, Vuetify, AWS S3", img: "/images/5.jpg", category: "laravel" },
-  { title: "Farm Agri", tech: "Laravel 10, Vue 3, Vite, MySQL", img: "/images/6.jpg", category: "laravel" },
-  { title: "Expense Tracker", tech: "React.js, Node.js, MongoDB, Chart.js", img: "/images/7.jpg", category: "mern" },
-  { title: "Gift Management", tech: "React.js, Node.js, MongoDB, Express.js", img: "/images/8.jpg", category: "mern" },
-  { title: "E-Commerce Clones", tech: "React, HTML/CSS, Node.js, MongoDB", img: "/images/9.jpg", category: "frontend" },
+  { title: "Hommigo", tech: "Laravel 10, Vue 3, Razorpay, WebSocket", img: "/images/hommigo-thumbnail.png", category: "laravel" },
+  { title: "BusinessPe", tech: "Laravel 10, Vue 2, Vuetify, AWS S3", img: "/images/businesspe-thumbnail.png", category: "laravel" },
+  { title: "Farm Agri", tech: "Laravel 10, Vue 3, Vite, MySQL", img: "/images/livestock-management-thumbnail.png", category: "laravel" },
+  { title: "Expense Tracker", tech: "React.js, Node.js, MongoDB, Chart.js", img: "/images/expense-tracker-thumbnail.jpeg", category: "mern" },
 ];
 
 const filters = [
   { label: "All", value: "all" },
   { label: "Laravel + Vue", value: "laravel" },
   { label: "MERN Stack", value: "mern" },
-  { label: "Frontend", value: "frontend" },
 ];
 
 export default function Portfolio() {
