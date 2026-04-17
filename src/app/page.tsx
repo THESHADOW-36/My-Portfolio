@@ -9,6 +9,11 @@ import ProgressBar from "@/components/ProgressBar";
 import Counter from "@/components/Counter";
 import Portfolio from "@/components/Portfolio";
 import ScrollTop from "@/components/ScrollTop";
+import ScrollProgress from "@/components/ScrollProgress";
+import CustomCursor from "@/components/CustomCursor";
+import TiltCard from "@/components/TiltCard";
+import Magnetic from "@/components/Magnetic";
+import TechMarquee from "@/components/TechMarquee";
 import Image from "next/image";
 
 const Container = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => (
@@ -26,6 +31,8 @@ const Col = ({ children, width, className = "" }: { children: React.ReactNode; w
 export default function Home() {
   return (
     <>
+      <ScrollProgress />
+      <CustomCursor />
       <Preloader />
       <Navbar />
 
@@ -117,12 +124,14 @@ export default function Home() {
               { Icon: CrownIcon, title: "Database Design", desc: "Efficient database architecture with MySQL and MongoDB, including schema design, optimization, and data management.", border: "" },
               { Icon: KeyIcon, title: "Real-Time Applications", desc: "Building real-time features with WebSockets, Pusher, and Laravel Reverb for live chat, notifications, and collaborative tools.", border: "sblr" },
               { Icon: HandIcon, title: "Payment Integration", desc: "Secure payment gateway integration including Razorpay, with transaction management and order processing systems.", border: "" },
-            ].map((s) => (
-              <div key={s.title} className={`serviceBox ${s.border}`}>
-                <div className="service-icon"><s.Icon /></div>
-                <h3 className="title">{s.title}</h3>
-                <p className="description">{s.desc}</p>
-              </div>
+            ].map((s, i) => (
+              <AnimateOnScroll key={s.title} delay={i * 0.1}>
+                <TiltCard className={`serviceBox ${s.border}`} maxTilt={6}>
+                  <div className="service-icon"><s.Icon /></div>
+                  <h3 className="title">{s.title}</h3>
+                  <p className="description">{s.desc}</p>
+                </TiltCard>
+              </AnimateOnScroll>
             ))}
           </div>
         </Container>
@@ -137,9 +146,9 @@ export default function Home() {
               { target: 3, label: "Years Experience" },
               { target: 10, label: "Technologies" },
               { target: 6, label: "Industry Domains" },
-            ].map((s) => (
+            ].map((s, i) => (
               <Col width="25%" key={s.label} className="stat-col no-padding">
-                <AnimateOnScroll>
+                <AnimateOnScroll delay={i * 0.12}>
                   <div className="sp">
                     <Counter target={s.target} />
                     <h3>{s.label}</h3>
@@ -151,6 +160,8 @@ export default function Home() {
         </Container>
       </section>
 
+      <TechMarquee />
+
       {/* PORTFOLIO */}
       <Portfolio />
 
@@ -160,10 +171,14 @@ export default function Home() {
           <div className="section-title" style={{ textAlign: "center" }}>
             <h1>Resume</h1>
             <p>My education and professional experience</p>
-            <a href="/My Resume.pdf" download="Dinesh Thiru Resume" className="resume_download_btn" style={{ display: "inline-block", marginTop: "20px" }}>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
-              <span>Download Resume</span>
-            </a>
+            <div style={{ marginTop: "20px" }}>
+              <Magnetic strength={0.4}>
+                <a href="/My Resume.pdf" download="Dinesh Thiru Resume" className="resume_download_btn" style={{ display: "inline-block" }}>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+                  <span>Download Resume</span>
+                </a>
+              </Magnetic>
+            </div>
           </div>
           <Row>
             <Col width="50%" className="resume-col">
@@ -242,12 +257,14 @@ export default function Home() {
               { Icon: DesktopIcon, title: "Frontend", desc: "React.js, Vue.js, Bootstrap, Material UI, Vuetify", border: "sbbr sbbrnone" },
               { Icon: ServerIcon, title: "Backend", desc: "Node.js, Express.js, Laravel", border: "sblr" },
               { Icon: DatabaseIcon, title: "Database", desc: "MongoDB, MySQL", border: "" },
-            ].map((s) => (
-              <div key={s.title} className={`serviceBox ${s.border}`}>
-                <div className="service-icon"><s.Icon /></div>
-                <h3 className="title">{s.title}</h3>
-                <p className="description">{s.desc}</p>
-              </div>
+            ].map((s, i) => (
+              <AnimateOnScroll key={s.title} delay={i * 0.1}>
+                <TiltCard className={`serviceBox ${s.border}`} maxTilt={6}>
+                  <div className="service-icon"><s.Icon /></div>
+                  <h3 className="title">{s.title}</h3>
+                  <p className="description">{s.desc}</p>
+                </TiltCard>
+              </AnimateOnScroll>
             ))}
           </div>
         </Container>
@@ -279,7 +296,11 @@ export default function Home() {
                         <textarea rows={6} placeholder="Your Message" required />
                       </Col>
                       <Col width="100%">
-                        <button type="submit" className="contact_btn">Send Message</button>
+                        <div style={{ textAlign: "center" }}>
+                          <Magnetic strength={0.25}>
+                            <button type="submit" className="contact_btn">Send Message</button>
+                          </Magnetic>
+                        </div>
                       </Col>
                     </Row>
                   </form>

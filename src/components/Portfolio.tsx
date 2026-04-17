@@ -2,6 +2,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import AnimateOnScroll from "./AnimateOnScroll";
+import TiltCard from "./TiltCard";
 
 const projects = [
   { title: "Healthy Tantra", tech: "Laravel 10, Vue 2, Pusher, MySQL", img: "/images/healthy-tantra-thumbnail.png", category: "laravel" },
@@ -47,7 +48,7 @@ export default function Portfolio() {
           {filtered.map((p, i) => (
             <div key={p.title} style={{ width: "33.333%", padding: "0 15px", minWidth: 280 }} className="portfolio-col">
               <AnimateOnScroll delay={i * 0.1}>
-                <div className="box">
+                <TiltCard className="box" maxTilt={5} glare={false}>
                   <Image src={p.img} alt={p.title} width={400} height={300} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
                   <div className="box-content">
                     <h3 className="title">{p.title}</h3>
@@ -60,7 +61,7 @@ export default function Portfolio() {
                       </a>
                     </li>
                   </ul>
-                </div>
+                </TiltCard>
               </AnimateOnScroll>
             </div>
           ))}
