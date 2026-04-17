@@ -16,19 +16,40 @@ export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => {
-      setSticky(window.scrollY >= 50);
-      const sections = navItems.map((n) => document.querySelector(n.href));
-      for (let i = sections.length - 1; i >= 0; i--) {
-        const el = sections[i] as HTMLElement;
-        if (el && el.offsetTop - 100 <= window.scrollY) {
-          setActive(navItems[i].href);
+    const sectionEls = navItems
+      .map((n) => document.querySelector(n.href) as HTMLElement | null)
+      .map((el) => ({ el, href: "" }));
+    navItems.forEach((n, i) => { sectionEls[i].href = n.href; });
+
+    let raf = 0;
+    let lastSticky = false;
+    let lastActive = "#home";
+    const update = () => {
+      const y = window.scrollY;
+      const nextSticky = y >= 50;
+      if (nextSticky !== lastSticky) {
+        lastSticky = nextSticky;
+        setSticky(nextSticky);
+      }
+      for (let i = sectionEls.length - 1; i >= 0; i--) {
+        const item = sectionEls[i];
+        if (item.el && item.el.offsetTop - 100 <= y) {
+          if (item.href !== lastActive) {
+            lastActive = item.href;
+            setActive(item.href);
+          }
           break;
         }
       }
+      raf = 0;
     };
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
+    const onScroll = () => { if (!raf) raf = requestAnimationFrame(update); };
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      if (raf) cancelAnimationFrame(raf);
+    };
   }, []);
 
   const scrollTo = (href: string) => {

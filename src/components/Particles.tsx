@@ -7,65 +7,104 @@ export default function ParticlesBg() {
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    const ctx = canvas.getContext("2d");
+    const ctx = canvas.getContext("2d", { alpha: true });
     if (!ctx) return;
 
-    let animId: number;
+    const isMobile = window.matchMedia("(max-width: 768px)").matches;
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reducedMotion) return;
+
+    const count = isMobile ? 30 : 50;
+    const linkDist = isMobile ? 110 : 140;
+    const linkDistSq = linkDist * linkDist;
+
+    let dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+    let w = 0, h = 0;
     const particles: { x: number; y: number; vx: number; vy: number; r: number }[] = [];
-    const count = 80;
 
     const resize = () => {
-      canvas.width = canvas.parentElement?.offsetWidth || window.innerWidth;
-      canvas.height = canvas.parentElement?.offsetHeight || 620;
+      const parent = canvas.parentElement;
+      w = parent?.offsetWidth || window.innerWidth;
+      h = parent?.offsetHeight || 620;
+      canvas.width = w * dpr;
+      canvas.height = h * dpr;
+      canvas.style.width = `${w}px`;
+      canvas.style.height = `${h}px`;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     };
     resize();
     window.addEventListener("resize", resize);
 
     for (let i = 0; i < count; i++) {
       particles.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        vx: (Math.random() - 0.5) * 0.8,
-        vy: (Math.random() - 0.5) * 0.8,
-        r: Math.random() * 2 + 1,
+        x: Math.random() * w,
+        y: Math.random() * h,
+        vx: (Math.random() - 0.5) * 0.5,
+        vy: (Math.random() - 0.5) * 0.5,
+        r: Math.random() * 1.6 + 0.8,
       });
     }
 
+    let animId = 0;
+    let visible = true;
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        visible = entry.isIntersecting;
+        if (visible && !animId) animId = requestAnimationFrame(draw);
+      },
+      { threshold: 0 }
+    );
+    io.observe(canvas);
+
     const draw = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      // Draw links
-      for (let i = 0; i < particles.length; i++) {
-        for (let j = i + 1; j < particles.length; j++) {
-          const dx = particles[i].x - particles[j].x;
-          const dy = particles[i].y - particles[j].y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 150) {
-            ctx.beginPath();
-            ctx.strokeStyle = `rgba(255,255,255,${0.2 * (1 - dist / 150)})`;
-            ctx.lineWidth = 0.5;
-            ctx.moveTo(particles[i].x, particles[i].y);
-            ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.stroke();
+      if (!visible) { animId = 0; return; }
+      ctx.clearRect(0, 0, w, h);
+
+      // Update positions first
+      for (let i = 0; i < count; i++) {
+        const p = particles[i];
+        p.x += p.vx;
+        p.y += p.vy;
+        if (p.x < 0 || p.x > w) p.vx *= -1;
+        if (p.y < 0 || p.y > h) p.vy *= -1;
+      }
+
+      // Draw links (batch per alpha tier to minimize state changes)
+      ctx.lineWidth = 0.5;
+      ctx.beginPath();
+      for (let i = 0; i < count; i++) {
+        const a = particles[i];
+        for (let j = i + 1; j < count; j++) {
+          const b = particles[j];
+          const dx = a.x - b.x;
+          const dy = a.y - b.y;
+          const distSq = dx * dx + dy * dy;
+          if (distSq < linkDistSq) {
+            ctx.moveTo(a.x, a.y);
+            ctx.lineTo(b.x, b.y);
           }
         }
       }
-      // Draw particles
-      for (const p of particles) {
+      ctx.strokeStyle = "rgba(255,255,255,0.12)";
+      ctx.stroke();
+
+      // Draw particles (single fillStyle)
+      ctx.fillStyle = "rgba(255,255,255,0.5)";
+      for (let i = 0; i < count; i++) {
+        const p = particles[i];
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(255,255,255,${0.3 + Math.random() * 0.2})`;
         ctx.fill();
-        p.x += p.vx;
-        p.y += p.vy;
-        if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
-        if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
       }
+
       animId = requestAnimationFrame(draw);
     };
-    draw();
+
+    animId = requestAnimationFrame(draw);
 
     return () => {
-      cancelAnimationFrame(animId);
+      if (animId) cancelAnimationFrame(animId);
+      io.disconnect();
       window.removeEventListener("resize", resize);
     };
   }, []);
@@ -73,7 +112,8 @@ export default function ParticlesBg() {
   return (
     <canvas
       ref={canvasRef}
-      style={{ position: "absolute", width: "100%", height: "100%", top: 0, left: 0 }}
+      aria-hidden="true"
+      style={{ position: "absolute", width: "100%", height: "100%", top: 0, left: 0, pointerEvents: "none" }}
     />
   );
 }

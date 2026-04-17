@@ -39,8 +39,6 @@ export default function Home() {
       {/* HOME */}
       <section id="home" className="home_bg" style={{ backgroundImage: "url('/images/background-2.jpg')" }}>
         <ParticlesBg />
-        <div className="hero-blob hero-blob-1" />
-        <div className="hero-blob hero-blob-2" />
         <div className="hero-grid-overlay" />
         <Container>
           <Row>
