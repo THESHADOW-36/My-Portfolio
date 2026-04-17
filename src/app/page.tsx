@@ -12,7 +12,7 @@ import ScrollTop from "@/components/ScrollTop";
 import Image from "next/image";
 
 const Container = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => (
-  <div style={{ maxWidth: 1320, margin: "0 auto", padding: "0 30px" }} className={className}>{children}</div>
+  <div style={{ maxWidth: 1320, margin: "0 auto", padding: "0 30px", width: "100%" }} className={`custom-container ${className}`}>{children}</div>
 );
 
 const Row = ({ children, className = "", style }: { children: React.ReactNode; className?: string; style?: React.CSSProperties }) => (
@@ -34,7 +34,7 @@ export default function Home() {
         <ParticlesBg />
         <Container>
           <Row>
-            <Col width="66.666%">
+            <Col width="66.666%" className="hero-col">
               <div className="about_me_content">
                 <span> - I Am Dinesh Thirunavukkarasu</span>
                 <TypeWriter />
@@ -253,10 +253,10 @@ export default function Home() {
                 <div className="contact">
                   <form onSubmit={(e) => e.preventDefault()}>
                     <Row>
-                      <Col width="50%">
+                      <Col width="50%" className="contact-field">
                         <input type="text" placeholder="Name" required />
                       </Col>
-                      <Col width="50%">
+                      <Col width="50%" className="contact-field">
                         <input type="email" placeholder="Email" required />
                       </Col>
                       <Col width="100%">

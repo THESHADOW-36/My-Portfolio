@@ -41,14 +41,16 @@ export default function Navbar() {
     <nav className={`navbar-custom ${sticky ? "nav-sticky" : ""}`}>
       <div style={{ maxWidth: 1320, margin: "0 auto", padding: "0 30px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
         <a className="navbar-brand" href="#home" onClick={(e) => { e.preventDefault(); scrollTo("#home"); }}>
-          Dinesh
+          Dinesh Thiru
         </a>
         <button
           onClick={() => setMobileOpen(!mobileOpen)}
-          style={{ display: "none", background: "none", border: "none", color: "#fff", fontSize: 28, cursor: "pointer" }}
-          className="mobile-toggle"
+          className={`mobile-toggle ${mobileOpen ? "open" : ""}`}
+          aria-label="Toggle navigation"
         >
-          ☰
+          <span></span>
+          <span></span>
+          <span></span>
         </button>
         <ul style={{ display: "flex", gap: 0, margin: 0, padding: 0, listStyle: "none" }} className={`nav-list ${mobileOpen ? "open" : ""}`}>
           {navItems.map((item) => (
